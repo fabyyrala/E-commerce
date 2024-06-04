@@ -1,8 +1,13 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from apps.usuarios.formularios import FormularioRegistroUsuario
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.views.generic.list import ListView
+from django.contrib.auth.models import User
+
 # Create your views here.
 def login_user(request):
    if request.method == "POST":
@@ -47,3 +52,27 @@ def registrarusuario(request):
     }
         
     return render(request, 'registrarse.html', ctx)
+
+
+#def listar_usuarios(request):
+    template_name = 'usuarios/listar_usuarios.html'
+    listar_usuarios = User.objects.all().order_by('name')
+    
+    ctx = {
+        'usuarios': listar_usuarios
+        
+    }
+    return render(request , template_name, ctx)
+
+class ListarUsuarios(ListView):
+    template_name = 'usuarios/listar_usuarios.html'
+    model = User
+    context_object_name = 'usuarios'
+    paginate = 10
+    
+    def get_context_data(self,**kwargs):
+        ctx = super(ListarUsuarios,self).get_context_data(**kwargs)
+        return ctx
+    
+    def get_queryset(self):
+        return self.model.objects.all() 
