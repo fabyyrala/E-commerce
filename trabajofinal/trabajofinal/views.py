@@ -1,4 +1,5 @@
-from django.shortcuts import render 
+from django.shortcuts import render
 
 def Incio(request):
     return render(request, 'inicio.html', {})
+

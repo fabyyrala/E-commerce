@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +42,11 @@ INSTALLED_APPS = [
     #apps
     'apps.usuarios',
 ]
+
+
+LOGIN_URL = reverse_lazy("login")
+
+LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,11 +84,14 @@ WSGI_APPLICATION = 'trabajofinal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ventasyf',
+        'USER' : 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -105,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-AR'
 
 TIME_ZONE = 'UTC'
 
