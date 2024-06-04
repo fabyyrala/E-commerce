@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+
+<section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="my-5 display-3 fw-bold ls-tight">
+                        Forma parte de <br />
+                        <span class="text-danger">nuestra comunidad.</span>
+                    </h1>
+                    <p style="color: hsl(217, 10%, 50.8%)">
+
+                        Regístrate ahora para convertirte en usuario y accede a un mundo de posibilidades para realizar
+                        tus compras de forma rápida y efectiva. Con tu cuenta, podrás guardar tus datos de pago y envío,
+                        hacer un seguimiento de tus pedidos, recibir ofertas exclusivas y mucho más. ¡No pierdas más
+                        tiempo y únete hoy mismo para disfrutar de todos estos beneficios y facilitar tus compras
+                        online!
+                    </p>
+                </div>
+
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body py-5 px-md-5">
+
+
+
+
+
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                {{formulario.as_p}}
+                                {% if forms.errors %}
+                                 {{form.errors}}
+                                {% endif %}
+                                <button class="w-100 btn btn-primary btn-lg" type="submit">Iniciar sesion</button>
+                            
+                               
+                            
+                            </form>
+
+
+               
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+
+{% endblock contenido %}

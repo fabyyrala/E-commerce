@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from apps.usuarios.formularios import FormularioRegistroUsuario
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from django.shortcuts import render, redirect
 # Create your views here.
 def login_user(request):
    if request.method == "POST":
@@ -21,3 +22,29 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('inicio')
+
+
+def registrarusuario(request):
+    form = FormularioRegistroUsuario()
+
+    if request.method == "POST":
+        form = FormularioRegistroUsuario(request.POST) 
+        if form.is_valid():
+            form.save()
+            # Tiene que corresponder a cada espacio de la BD de manera manual.
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password= password)
+            login(request, user)
+            messages.success(request, "Registro exitoso.")
+            return redirect('inicio')
+        else:
+            pass
+
+    ctx = {
+        "formulario": form,
+    }
+        
+    return render(request, 'registrarse.html', ctx)
+
+
