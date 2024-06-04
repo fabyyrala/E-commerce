@@ -7,13 +7,20 @@ class FormularioRegistroUsuario(UserCreationForm):
         model = User
         fields = ["username", "first_name", "last_name", "email"]
 
+
     #Otra forma a traves del constructor
-    def __init__(self, *args, **kwargs):
-        super(FormularioRegistroUsuario, self).__init__(*args, **kwargs)
-        self.fields["email"].widget.attrs["class"] = "form-control"
-        self.fields["first_name"].widget.attrs["class"] = "form-control"
-        self.fields["last_name"].widget.attrs["class"] = "form-control"
-        self.fields["username"].widget.attrs["class"] = "form-control"
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
         
     password1 = forms.CharField(
         label="Contraseña", 
