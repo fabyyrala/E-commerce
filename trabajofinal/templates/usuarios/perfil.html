@@ -2,17 +2,13 @@
 
 {% block contenido %}
 
-
-
-
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Perfil</h2>
 </div>
 
-    <div class="row">
-
-        <div class="col">
-            <div class="bd-example">
+<div class="row">
+    <div class="col">
+        <div class="bd-example">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -20,52 +16,27 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Usuario</th>
                         <th scope="col">Email</th>
-                        <!--<th scope="col">Acciones</th>-->
                         <th>ROL</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    {% for usuario in usuarios %}
-
                     <tr>
-                        {% if usuario.id == usuario_id %}
-                        <h2>{{ usuario.first_name }} {{ usuario.last_name }}</h2>
-                        <p>Usuario: {{ usuario.username }}</p>
-                        <p>Email: {{ usuario.email }}</p>
-                        
-                         
-                        {% endif %}
+                        <td>{{ usuario.first_name }}</td>
+                        <td>{{ usuario.last_name }}</td>
+                        <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>
                             {% if usuario.is_staff %}
-                                <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-warning"> ADMINISTRADOR</span></p>
-
+                                <span class="badge bg-danger">ADMINISTRADOR</span>
                             {% else %}
-                        
-                                <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-primary"> USUARIO</span></p>  
-
+                                <span class="badge bg-secondary">USUARIO</span>
                             {% endif %}
-                            
-                            
                         </td>
-
                     </tr>
-                             {% empty %}
-                    <tr>
-                        <td colspan="5">No existen registros</td>
-                    </tr>
-
-                    {% endfor %}
-
                 </tbody>
-
             </table>
         </div>
-
-
     </div>
+</div>
 
-{% else %}
-    
-
-{% endif %}
 {% endblock contenido %}
