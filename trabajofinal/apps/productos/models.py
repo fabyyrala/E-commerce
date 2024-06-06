@@ -1,9 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class Productos(models.Model):
-    nombre  = models.CharField()
-    desc  = models.CharField()
-    categoria = models.CharField()
+class Producto(models.Model):
+    nombre  = models.CharField(max_length=130)
+    desc  = models.CharField(max_length=240)
+    categoria = models.CharField(max_length=30)
     precio = models.FloatField()
-    estado  = models.BooleanField()
+    activo  = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.nombre}"
