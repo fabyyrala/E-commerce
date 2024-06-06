@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">{{icono}} Perfil</h2>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="bd-example">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Email</th>
+                        <th>ROL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ usuario.first_name }}</td>
+                        <td>{{ usuario.last_name }}</td>
+                        <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>
+                            {% if usuario.is_staff %}
+                                <span class="badge bg-danger">ADMINISTRADOR</span>
+                            {% else %}
+                                <span class="badge bg-secondary">USUARIO</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}

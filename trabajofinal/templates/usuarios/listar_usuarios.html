@@ -1,16 +1,16 @@
 {% extends 'base/base.html' %}
 
 {% block contenido %}
-{% if usuario.is_staff %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Lista de usuarios</h2>
 </div>
 
-<div class="row">
+{% if request.user.is_staff and request.user.is_superuser %}
+    <div class="row">
 
-    <div class="col">
-        <div class="bd-example">
+        <div class="col">
+            <div class="bd-example">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -30,17 +30,20 @@
                         <td>{{usuario.last_name}}</td>
                         <td>{{usuario.username}}</td>
                         <td>
-                            {% if usuario.is_superuser %}
+                            {% if usuario.is_staff %}
                                 <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-warning"> ADMINISTRADOR</span></p>
 
                             {% else %}
-                                 <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-primary"> USUARIO</span></p>  
+                        
+                                <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-primary"> USUARIO</span></p>  
 
                             {% endif %}
                             
                             
                         </td>
-                    {% empty %}
+
+                    </tr>
+                             {% empty %}
                     <tr>
                         <td colspan="5">No existen registros</td>
                     </tr>
@@ -54,11 +57,11 @@
 
 
     </div>
+
+{% else %}
+    
+
 {% endif %}
 {% endblock contenido %}
 
-{% if error_message %}
-    <p>{{ error_message }}</p>
-{% else %}
-    <p>This is the content of my page.</p>
-{% endif %}
+
