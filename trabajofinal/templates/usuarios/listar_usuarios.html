@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block contenido %}
-{% if usuario.is_superuser %}
+{% if usuario.is_staff %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Lista de usuarios</h2>
@@ -56,3 +56,9 @@
     </div>
 {% endif %}
 {% endblock contenido %}
+
+{% if error_message %}
+    <p>{{ error_message }}</p>
+{% else %}
+    <p>This is the content of my page.</p>
+{% endif %}
