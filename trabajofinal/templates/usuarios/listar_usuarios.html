@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">{{icono}} Lista de usuarios</h2>
+</div>
+
+
+{% if usuario.is_superuser %}
+<div class="row">
+
+    <div class="col">
+        <div class="bd-example">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Usuario</th>
+                        <!--<th scope="col">Acciones</th>-->
+                        <th>ROLES</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for usuario in usuarios %}
+
+                    <tr>
+                        <td>{{usuario.first_name}}</td>
+                        <td>{{usuario.last_name}}</td>
+                        <td>{{usuario.username}}</td>
+                        <td>
+                            {% if usuario.is_staff %}
+                                <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-warning"> ADMINISTRADOR</span></p>
+
+                            {% else %}
+                                 <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-primary"> USUARIO</span></p>  
+
+                            {% endif %}
+                            
+                            
+                        </td>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No existen registros</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+
+    </div>
+{% endif %}
+{% endblock contenido %}
