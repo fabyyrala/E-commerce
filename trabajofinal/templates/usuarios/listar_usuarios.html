@@ -1,13 +1,12 @@
 {% extends 'base/base.html' %}
 
 {% block contenido %}
+{% if usuario.is_superuser %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Lista de usuarios</h2>
 </div>
 
-
-{% if usuario.is_superuser %}
 <div class="row">
 
     <div class="col">
@@ -31,7 +30,7 @@
                         <td>{{usuario.last_name}}</td>
                         <td>{{usuario.username}}</td>
                         <td>
-                            {% if usuario.is_staff %}
+                            {% if usuario.is_superuser %}
                                 <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-warning"> ADMINISTRADOR</span></p>
 
                             {% else %}

@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Incio, name="inicio"),
-
+    path('error-permisos/', views.pagina_error_permisos, name="error_permisos"),
 
     #Incluye aplicacion
     path('usuarios/', include('django.contrib.auth.urls')),
