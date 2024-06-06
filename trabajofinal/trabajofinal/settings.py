@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'apps.usuarios',
+    #productos
+    'apps.productos',
 ]
 
 
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'trabajofinal.urls'
@@ -135,7 +138,7 @@ STATIC_URL = 'static/'
 RUTA_CARPETA_STATIC = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    RUTA_CARPETA_STATIC,
+    os.path.join(BASE_DIR, 'static')
 ]
  
 
