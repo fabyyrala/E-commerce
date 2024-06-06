@@ -43,10 +43,10 @@
                         </h6>
                         <hr class="dropdown-divider" />
 
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Usuarios:perfil' %}"><i class="bi bi-person-fill"></i> Perfil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Config.</a></li>
-                        {% if user.is_staff %}
-                            <li><a class="dropdown-item" href="{% url 'Usuarios:listar-usuarios' %}"><i class="bi bi-gear"></i> Acciones</a></li>
+                        {% if user.is_staff and user.is_superuser %}
+                            <li><a class="dropdown-item" href="{% url 'Usuarios:listar-usuarios' %}"><i class="bi bi-gear"></i> Ver Usuarios</a></li>
                         {% endif %}
                         <hr class="dropdown-divider" />
                         <li><a class="dropdown-item" href="{% url 'Usuarios:logout' %}">

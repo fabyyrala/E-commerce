@@ -25,6 +25,7 @@ urlpatterns = [
     path('logout_user', views.logout_user, name="logout"),
     path('registro', views.registrarusuario, name="registrarusuario"),
     path('listar-usuarios',views.ListarUsuarios.as_view(), name="listar-usuarios"),
+    path('perfil', views.VerPerfil.as_view(), name="perfil"),
     
     #path('', views.Incio, name="inicio"),
 ]

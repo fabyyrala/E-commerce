@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
+from django.views.generic import DetailView
+
 
 # Create your views here.
 def login_user(request):
@@ -76,3 +78,17 @@ class ListarUsuarios(ListView):
     
     def get_queryset(self):
         return self.model.objects.all() 
+
+
+
+class VerPerfil(DetailView):
+    model = User
+    template_name = 'usuarios/perfil.html'
+    context_object_name = 'usuario'
+    def get_object(self):
+        return self.get_queryset().first()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['usuario'] = self.object
+        return context

@@ -48,6 +48,8 @@ LOGIN_URL = reverse_lazy("login")
 
 LOGIN_REDIRECT_URL = reverse_lazy("inicio")
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

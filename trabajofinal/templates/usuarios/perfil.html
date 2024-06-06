@@ -2,11 +2,13 @@
 
 {% block contenido %}
 
+
+
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">{{icono}} Lista de usuarios</h2>
+    <h2 class="h2">{{icono}} Perfil</h2>
 </div>
 
-{% if request.user.is_staff and request.user.is_superuser %}
     <div class="row">
 
         <div class="col">
@@ -17,8 +19,9 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Usuario</th>
+                        <th scope="col">Email</th>
                         <!--<th scope="col">Acciones</th>-->
-                        <th>ROLES</th>
+                        <th>ROL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,10 +29,13 @@
                     {% for usuario in usuarios %}
 
                     <tr>
-                        <td>{{usuario.first_name}}</td>
-                        <td>{{usuario.last_name}}</td>
-                        <td>{{usuario.username}}</td>
-                        <td>
+                        {% if usuario.id == usuario_id %}
+                        <h2>{{ usuario.first_name }} {{ usuario.last_name }}</h2>
+                        <p>Usuario: {{ usuario.username }}</p>
+                        <p>Email: {{ usuario.email }}</p>
+                        
+                         
+                        {% endif %}
                             {% if usuario.is_staff %}
                                 <p><i class="far fa-check-circle" style="color: green"></i><span class="badge text-bg-warning"> ADMINISTRADOR</span></p>
 
@@ -63,5 +69,3 @@
 
 {% endif %}
 {% endblock contenido %}
-
-
