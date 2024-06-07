@@ -21,4 +21,7 @@ class DetalleProducto(DetailView):
         ctx = super(DetalleProducto, self).get_context_data(**kwargs)
         ctx["icono"] = "o"
         return ctx
+    
+    def get_queryset(self):
+        return self.model.objects.all().order_by('id')
 
