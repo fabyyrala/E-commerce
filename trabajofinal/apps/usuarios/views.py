@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from django.views.generic import DetailView
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login_user(request):
@@ -92,3 +92,12 @@ class VerPerfil(DetailView):
         context = super().get_context_data(**kwargs)
         context['usuario'] = self.object
         return context
+    
+    
+
+
+@login_required
+def perfil(request):
+    # Aquí puedes mostrar el perfil del usuario loggeado
+    
+    return render(request, 'perfil.html')

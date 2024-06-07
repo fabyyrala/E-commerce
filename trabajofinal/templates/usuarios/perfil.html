@@ -2,6 +2,8 @@
 
 {% block contenido %}
 
+{% if request.user.is_staff %}
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Perfil</h2>
 </div>
@@ -19,24 +21,42 @@
                         <th>ROL</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ usuario.first_name }}</td>
-                        <td>{{ usuario.last_name }}</td>
-                        <td>{{ usuario.username }}</td>
-                        <td>{{ usuario.email }}</td>
-                        <td>
-                            {% if usuario.is_staff %}
-                                <span class="badge bg-danger">ADMINISTRADOR</span>
-                            {% else %}
-                                <span class="badge bg-secondary">USUARIO</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                </tbody>
+               <tbody>
+                   <tr>
+                       <td>{{ request.user.first_name }}</td>
+                       <td>{{ request.user.last_name }}</td>
+                       <td>{{ request.user.username }}</td>
+                       <td>{{ request.user.email }}</td>
+                       <td>
+                           {% if request.user.is_staff %}
+                               <span class="badge bg-danger">ADMINISTRADOR</span>
+                           {% else %}
+                               <span class="badge bg-secondary">USUARIO</span>
+                           {% endif %}
+                       </td>
+                   </tr>
+               </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
+{% else %}
+<div class="container text-center d-flex justify-content-center align-items-center mt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+                Regístrate para acceder a tu perfil
+            </h1>
+            <p style="color: hsl(217, 10%, 50.8%)">
+                Si aún no tienes una cuenta, puedes registrarte para acceder a tu perfil y realizar compras.
+            </p>
+            <a class="btn btn-primary btn-lg" href="{% url 'Usuarios:registrarusuario' %}">Registrarse</a>
+        </div>
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock contenido %}
