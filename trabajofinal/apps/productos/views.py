@@ -1,12 +1,13 @@
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView
+
 
 from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
-
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
-
 
 class Catalogo(ListView):
     template_name= 'productos/catalogo.html'
@@ -35,20 +36,17 @@ class DetalleProducto(DetailView):
         return self.model.objects.all().order_by('id')
 
 
-def RegistrarProducto(request):
-    form = NuevoProducto()
+class RegistrarProducto(CreateView):
+    template_name = "productos/nuevo.html"
+    model = Producto
+    form_class = NuevoProducto
+    success_url = reverse_lazy("Productos:Catalogo")
 
-    if request.method == "POST":
-        form = NuevoProducto(request.POST) 
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Registro exitoso.")
-            return redirect('/catalogo')
-        else:
-            messages.success(request, "No se pudo registrar el producto. Verifique los siguientes campos:")
 
-    ctx = {
-        "formulario": form,
-    }
-        
-    return render(request, 'productos/nuevo.html', ctx)
+
+
+class EditarProducto(UpdateView):
+    template_name = "productos/editar.html"
+    model = Producto
+    form_class = NuevoProducto
+    success_url = reverse_lazy("Productos:Catalogo")

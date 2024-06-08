@@ -51,8 +51,21 @@
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
+
+                                <!-- Acciones -->    
+                                {% if request.user.is_staff and request.user.is_superuser %}
+                                <td class="py-2">
+                                    <a href="{% url 'Productos:EditarProducto' producto.pk %}" type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
+                                    <button type="button" class="btn btn-outline-success"><i class="bi bi-check-lg"></i></button>
+                                  <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                  </td>
+
+                                <hr>
+                                {% endif %}
+
+
                                 <!-- Product name-->
-                                <span class="badge text-bg-danger">{{producto.categoria}}</span>
+                                <span class="badge text-bg-dark">{{producto.categoria}}</span>
                                 <h6 class="fw-bolder">{{producto.nombre}}</h6>
                                 <!-- Product price-->
                                 <h3>${{producto.precio}}</h3>
