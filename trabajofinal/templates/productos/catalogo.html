@@ -1,17 +1,16 @@
-
 {% extends 'base/base.html' %}
 
 
 {% block contenido %}
 
-  <!-- As a link --> 
-   {% if request.user.is_staff and request.user.is_superuser %}
+<!-- As a link -->
+{% if request.user.is_staff and request.user.is_superuser %}
 <nav class="navbar navbar-light" style="width:80%; margin-left:200px;">
     <div class="container-fluid">
-      
+
         <button class="btn btn-outline-dark" type="submit">
             <div class="nav-item dropdown">
-                
+
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
                     Categoria <span class="badge bg-danger text-white ms-1 rounded-pill">10</span>
                 </a>
@@ -25,24 +24,25 @@
             </div>
         </button>
         <div class="text-justify"><a class="btn btn-danger mt-auto mb-2" href="#">Nuevo producto</a></div>
-        
-    
-    
-    
+
+
+
+
         </a>
     </div>
-  </nav>
+</nav>
 {% endif %}
 
 
+
 <section class="h-100 " style="background-color:#eee;">
-    
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                 <!----- descuento -->
-                {% for producto in Producto %}
+                {% for producto in productos %}
 
                 <div class="col mb-5">
                     <div class="card h-100">
@@ -60,7 +60,8 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'Productos:Detalles' producto.pk %}">Detalles</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                    href="{% url 'Productos:Detalles' producto.pk %}">Detalles</a></div>
                         </div>
                     </div>
                 </div>
@@ -68,16 +69,13 @@
 
                 {% endfor %}
 
-        </div>
-    </section> 
-   </div>
+            </div>
+    </section>
+    </div>
 
 </section>
 
-
+{% include 'base/pagination.html' %}
 
 
 {% endblock contenido %}
-
-
-
