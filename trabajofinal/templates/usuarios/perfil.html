@@ -2,7 +2,7 @@
 
 {% block contenido %}
 
-{% if request.user.is_staff %}
+{% if request.user.is_active %}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2">{{icono}} Perfil</h2>
