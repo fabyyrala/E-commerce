@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row ">
+
+        <div class="col-lg-9 mx-auto">
+
+            <div class="card mt-2 mx-auto p-4">
+                <div class=" text-center mt-5 ">
+                    <h1>Registrar nuevo producto</h1>
+                    <hr>
+                </div>
+
+                Complete los campos.<br>
+                * Obligatorios.
+                <div class="card-body bg-light">
+
+                    <div class="container">
+                        <div class="controls">
+
+                            <div class="row">
+                                <form method="POST" class="btn-outline-danger">
+                                    {% csrf_token %}
+
+                                    {{formulario.as_p}}
+
+                                    {% if messages %}
+                                    <ul class="messages">
+                                        <div class="alert alert-warning" role="alert">
+                                        {% for message in messages %}
+                                            {{ message }}
+                                            {{formulario.errors}}
+                                           
+                                            {% endfor %}
+                                        </div>
+                                    </ul>
+                                    {% endif %}
+
+                                    <div class=" text-center mt-5 ">
+                                        <input type="submit" class="btn btn-danger btn-send  pt-2 btn-block
+                                        " value="Crear producto">
+                                    </div>
+
+
+
+
+
+                            </form>
+
+
+
+                            <div class="col-md-12">
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<br>
+<hr>
+
+{% endblock contenido %}
