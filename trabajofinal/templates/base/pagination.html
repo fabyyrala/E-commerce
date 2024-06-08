@@ -1,16 +1,18 @@
 {% if is_paginated %}
+<body class="bg-dark text-light">
+
 <nav aria-label="Page navigation example">
-    <ul class="pagination bg-light">
+    <ul class="pagination justify-content-center">
     
     {% if page_obj.has_previous %}
-    <li class="page-item bg-danger"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Anterior</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Anterior</a></li>
     {% else %}
     <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
     {% endif %}   
 
     {% for pagina in paginator.page_range %}
         
-        <li class="page-item {% if page_obj.number == pagina %} active {% endif %}"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
+        <li class="page-item {% if page_obj.number == pagina %} active bg-danger {% endif %}"><a class="page-link" href="?page={{pagina}}">{{pagina}}</a></li>
     {% endfor %}
 
     {% if page_obj.has_next %}
@@ -18,7 +20,9 @@
     {% else %}
     <li class="page-item disabled"><a class="page-link" href="#">Siguiente</a></li>
     {% endif %}
-    
 </nav>
+
+</body>
+
 
 {% endif %}
