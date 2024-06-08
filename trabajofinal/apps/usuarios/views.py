@@ -2,11 +2,14 @@ from typing import Any
 from django.db.models.query import QuerySet
 from apps.usuarios.formularios import FormularioRegistroUsuario
 
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
 
@@ -55,17 +58,6 @@ def registrarusuario(request):
         
     return render(request, 'registrarse.html', ctx)
 
-
-#def listar_usuarios(request):
-    template_name = 'usuarios/listar_usuarios.html'
-    listar_usuarios = User.objects.all().order_by('name')
-    
-    ctx = {
-        'usuarios': listar_usuarios
-        
-    }
-    return render(request , template_name, ctx)
-
 class ListarUsuarios(ListView):
     template_name = 'usuarios/listar_usuarios.html'
     model = User
@@ -94,10 +86,16 @@ class VerPerfil(DetailView):
         return context
     
     
-
-
 @login_required
 def perfil(request):
     # Aquí puedes mostrar el perfil del usuario loggeado
     
     return render(request, 'perfil.html')
+
+
+
+class EditarPerfil(UpdateView):
+    template_name = "usuarios/editarperfil.html"
+    model = User
+    form_class = FormularioRegistroUsuario
+    success_url = reverse_lazy("Usuarios:EditarPerfil")

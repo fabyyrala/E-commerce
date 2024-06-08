@@ -28,6 +28,7 @@ urlpatterns = [
     path('listar-usuarios',views.ListarUsuarios.as_view(), name="listar-usuarios"),
     path('perfil', views.VerPerfil.as_view(), name="perfil"),
     path('perfil/<int:usuario_id>/', VerPerfil.as_view(), name='ver_perfil'),
+    path('perfil/editar/<int:pk>', views.EditarPerfil.as_view(), name="EditarPerfil")
     
     
     

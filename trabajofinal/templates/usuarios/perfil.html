@@ -19,6 +19,7 @@
                         <th scope="col">Usuario</th>
                         <th scope="col">Email</th>
                         <th>ROL</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                <tbody>
@@ -33,6 +34,8 @@
                            {% else %}
                                <span class="badge bg-secondary">USUARIO</span>
                            {% endif %}
+                       </td>
+                       <td><a class="w-100 btn btn-primary btn-lg" type="button" href="{% url 'Usuarios:EditarPerfil' request.user.pk %}">Editar</a>
                        </td>
                    </tr>
                </tbody>
