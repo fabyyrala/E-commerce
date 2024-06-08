@@ -6,11 +6,24 @@
 
   <!-- As a link --> 
    {% if request.user.is_staff and request.user.is_superuser %}
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light" style="width:80%; margin-left:200px;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-       
-
+      
+        <button class="btn btn-outline-dark" type="submit">
+            <div class="nav-item dropdown">
+                
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
+                    Categoria <span class="badge bg-danger text-white ms-1 rounded-pill">10</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">All Products</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                    <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+            </div>
+        </button>
         <div class="text-justify"><a class="btn btn-danger mt-auto mb-2" href="#">Nuevo producto</a></div>
         
     
