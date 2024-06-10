@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto
+from .models import Producto,Categoria
 
 
 from apps.usuarios.models import AbstractUser
@@ -8,7 +8,7 @@ class NuevoProducto(forms.ModelForm):
    
     class Meta:
         model = Producto
-        fields = ["nombre", "desc", "precio"]
+        fields = ["nombre", "desc", "precio","categoria"]
 
 
     #Otra forma a traves del constructor
@@ -21,6 +21,7 @@ class NuevoProducto(forms.ModelForm):
     precio = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
-
-
     
+    def __init__(self, *args, **kwargs):
+        super(NuevoProducto, self).__init__(*args, **kwargs)
+        self.fields['categoria'].queryset = Categoria.objects.all()

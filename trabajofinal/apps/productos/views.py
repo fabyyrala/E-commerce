@@ -1,12 +1,12 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect,render
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import Favorito
+from .models import Favorito,Categoria
 
-from apps.productos.models import Producto
+from apps.productos.models import Producto,Categoria
 from apps.productos.formularios import NuevoProducto
 
 class Catalogo(ListView):
@@ -54,3 +54,18 @@ def agregar_favorito(request, producto_id):
     producto = get_object_or_404(Producto, pk=producto_id)
     Favorito.objects.create(usuario=request.user, producto=producto)
     return redirect('Productos:Catalogo')
+
+
+def Categoria(request,foo):
+    
+    foo = foo.replace("-"," ")
+    #Traigo la categoria desde la base de datos
+    
+    try:
+        categoria = Categoria.objects.get(name = foo)
+        productos = Producto.objects.filter(categoria = categoria)
+        return render(request, 'productos/categoria.html',{'productos':productos, 'categoria':categoria})
+    except:
+        return redirect('Productos:Catalogo')
+    
+    
