@@ -1,17 +1,16 @@
 from typing import Any
-from django.db.models.query import QuerySet
-from apps.usuarios.formularios import FormularioRegistroUsuario
 
-
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
-from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
-from django.contrib.auth.decorators import login_required
+
+from apps.usuarios.formularios import FormularioRegistroUsuario
 
 # Create your views here.
 def login_user(request):

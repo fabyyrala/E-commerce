@@ -1,10 +1,10 @@
-from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
+from .models import Favorito
 
 from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
@@ -43,10 +43,14 @@ class RegistrarProducto(CreateView):
     success_url = reverse_lazy("Productos:Catalogo")
 
 
-
-
 class EditarProducto(UpdateView):
     template_name = "productos/editar.html"
     model = Producto
     form_class = NuevoProducto
     success_url = reverse_lazy("Productos:Catalogo")
+
+
+def agregar_favorito(request, producto_id):
+    producto = get_object_or_404(Producto, pk=producto_id)
+    Favorito.objects.create(usuario=request.user, producto=producto)
+    return redirect('Productos:Catalogo')

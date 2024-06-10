@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Producto(models.Model):
@@ -10,3 +11,10 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"{self.nombre}"
+    
+
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    fecha_agregado = models.DateTimeField(auto_now_add=True)
