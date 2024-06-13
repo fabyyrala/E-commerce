@@ -19,8 +19,12 @@ class Catalogo(ListView):
         ctx = super(Catalogo, self).get_context_data(**kwargs)
         return ctx
     
+    #def get_queryset(self):
+        #return self.model.objects.all().order_by('-id')
+
+    #Catalogo por categoria Modificar si no funciona
     def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
+        return self.model.objects.all().order_by('categoria')
 
 
 class DetalleProducto(DetailView):
@@ -56,16 +60,6 @@ def agregar_favorito(request, producto_id):
     return redirect('Productos:Catalogo')
 
 
-def Categoria(request,foo):
-    
-    foo = foo.replace("-"," ")
-    #Traigo la categoria desde la base de datos
-    
-    try:
-        categoria = Categoria.objects.get(name = foo)
-        productos = Producto.objects.filter(categoria = categoria)
-        return render(request, 'productos/categoria.html',{'productos':productos, 'categoria':categoria})
-    except:
-        return redirect('Productos:Catalogo')
+
     
     

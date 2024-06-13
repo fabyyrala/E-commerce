@@ -21,10 +21,21 @@
                     </li>
                     <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                     <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                    <li><a class="dropdown-item" href="{% url 'Productos:CrearCategoria' %}">Nueva Categoria</a></li>
                     <li>
             </div>
         </button>
+         <div class = "col-md-4 ">
+            <h2>Categoria</h2>
+            <a href="{% url 'Productos:Catalogo' %}">Todos los Productos</a>
+            {% for categoria in categorias  %}
+             <li class = "list-group-item">
+                <a href="{% url 'Productos:Catalogo' %}"></a>
+             </li>
+                    
+            {% endfor %}
+
+         </div>
+
         <div class="text-justify"><a class="btn btn-danger mt-auto mb-2" href="{% url 'Productos:NuevoProducto' %}">Nuevo producto</a></div>
 
 

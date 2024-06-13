@@ -5,7 +5,9 @@ from .models import Producto,Categoria
 from apps.usuarios.models import AbstractUser
 
 class NuevoProducto(forms.ModelForm):
-   
+    
+    
+    
     class Meta:
         model = Producto
         fields = ["nombre", "desc", "precio","categoria"]
@@ -22,6 +24,5 @@ class NuevoProducto(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     
-    def __init__(self, *args, **kwargs):
-        super(NuevoProducto, self).__init__(*args, **kwargs)
-        self.fields['categoria'].queryset = Categoria.objects.all()
+    
+  
