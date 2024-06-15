@@ -8,6 +8,7 @@ from .models import Favorito
 
 from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
+from apps.categorias.models import Categoria
 
 class Catalogo(ListView):
     template_name= 'productos/catalogo.html'
@@ -19,8 +20,17 @@ class Catalogo(ListView):
         ctx = super(Catalogo, self).get_context_data(**kwargs)
         return ctx
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categorias'] = Categoria.objects.all()
+        return context
+    
     def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
+        queryset = super().get_queryset()
+        categoria = self.request.GET.get('categoria')
+        if categoria:
+            queryset = queryset.filter(categoria__nombre=categoria)
+        return queryset
 
   
 
