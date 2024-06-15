@@ -4,9 +4,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import Favorito,Categoria
+from .models import Favorito
 
-from apps.productos.models import Producto,Categoria
+from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
 
 class Catalogo(ListView):
@@ -19,13 +19,10 @@ class Catalogo(ListView):
         ctx = super(Catalogo, self).get_context_data(**kwargs)
         return ctx
     
-    #def get_queryset(self):
-        #return self.model.objects.all().order_by('-id')
-
-    #Catalogo por categoria Modificar si no funciona
     def get_queryset(self):
-        return self.model.objects.all().order_by('categoria')
+        return self.model.objects.all().order_by('-id')
 
+  
 
 class DetalleProducto(DetailView):
     templates_name = 'productos/producto_detail.html'

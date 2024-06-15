@@ -1,11 +1,11 @@
 from django import forms
-from .models import Producto,Categoria
+from .models import Producto
 
 
 from apps.usuarios.models import AbstractUser
 
+
 class NuevoProducto(forms.ModelForm):
-    
     
     
     class Meta:
@@ -23,6 +23,5 @@ class NuevoProducto(forms.ModelForm):
     precio = forms.FloatField(
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
-    
     
   

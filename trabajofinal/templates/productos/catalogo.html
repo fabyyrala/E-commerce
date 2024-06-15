@@ -6,38 +6,28 @@
 <!-- As a link -->
 {% if request.user.is_staff and request.user.is_superuser %}
 <nav class="navbar navbar-light" style="width:80%; margin-left:200px;">
-    <div class="container-fluid">
-
-        <button class="btn btn-outline-dark" type="submit">
-            <div class="nav-item dropdown">
-
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
-                    Categoria <span class="badge bg-danger text-white ms-1 rounded-pill">10</span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">All Products</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                    <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                    <li>
-            </div>
-        </button>
-         <div class = "col-md-4 ">
-            <h2>Categoria</h2>
-            <a href="{% url 'Productos:Catalogo' %}">Todos los Productos</a>
-            {% for categoria in categorias  %}
-             <li class = "list-group-item">
-                <a href="{% url 'Productos:Catalogo' %}"></a>
-             </li>
-                    
-            {% endfor %}
-
-         </div>
-
-        <div class="text-justify"><a class="btn btn-danger mt-auto mb-2" href="{% url 'Productos:NuevoProducto' %}">Nuevo producto</a></div>
-
+   <div class="container-fluid">
+   
+       <form method="GET" action="{% url 'Productos:Catalogo' %}">
+           <div class="dropdown">
+               <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                   Categorías
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                   <li><a class="dropdown-item" href="{% url 'Productos:Catalogo' %}">All Products</a></li>
+                   <li><hr class="dropdown-divider" /></li>
+                   {% for categoria in categorias %}
+                   <li><a class="dropdown-item" href="{% url 'Productos:Catalogo' %}?categoria={{categoria.nombre}}">{{categoria.nombre}}</a></li>
+                   {% endfor %}
+               </ul>
+           </div>
+           
+       </form>
+   
+       <div class="text-justify">
+           <a class="btn btn-danger mt-auto mb-2" href="{% url 'Productos:NuevoProducto' %}">Nuevo producto</a>
+       </div>
+   </div>
 
 
 

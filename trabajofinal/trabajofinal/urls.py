@@ -14,10 +14,10 @@ urlpatterns = [
     path('usuarios/', include('django.contrib.auth.urls')),
     path('usuarios/', include("apps.usuarios.urls")),
     
-   
-
-    
     
     #productos
     path('', include("apps.productos.urls")),
+    
+    #categorias
+    path('categorias/', include('apps.categorias.urls')),
 ]
