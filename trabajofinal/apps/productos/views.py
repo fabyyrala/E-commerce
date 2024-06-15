@@ -4,11 +4,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from .models import Favorito
-
 from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
 from apps.categorias.models import Categoria
+from apps.favorito.models import Favorito
 
 class Catalogo(ListView):
     template_name= 'productos/catalogo.html'
@@ -23,6 +22,15 @@ class Catalogo(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categorias'] = Categoria.objects.all()
+
+        #favoritos
+        usuario = self.request.user
+        
+        productos_favoritos = Favorito.objects.filter(usuario=usuario).values_list('producto__id', flat=True)
+        for producto in context['productos']:
+            producto.es_favorito = producto.id in productos_favoritos
+
+        
         return context
     
     def get_queryset(self):
@@ -60,11 +68,6 @@ class EditarProducto(UpdateView):
     form_class = NuevoProducto
     success_url = reverse_lazy("Productos:Catalogo")
 
-
-def agregar_favorito(request, producto_id):
-    producto = get_object_or_404(Producto, pk=producto_id)
-    Favorito.objects.create(usuario=request.user, producto=producto)
-    return redirect('Productos:Catalogo')
 
 
 

@@ -16,8 +16,9 @@ urlpatterns = [
     
     
     #productos
-    path('', include("apps.productos.urls")),
+    path('prod/', include("apps.productos.urls")),
     
     #categorias
     path('categorias/', include('apps.categorias.urls')),
+    path('favs/', include('apps.favorito.urls')),
 ]

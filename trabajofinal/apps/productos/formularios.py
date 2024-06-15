@@ -2,9 +2,6 @@ from django import forms
 from .models import Producto
 
 
-from apps.usuarios.models import AbstractUser
-
-
 class NuevoProducto(forms.ModelForm):
     
     

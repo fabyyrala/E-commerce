@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     #productos
     'apps.productos',
     #categorias
-    'apps.categorias'
+    'apps.categorias',
+    #favoritos
+    'apps.favorito'
 ]
 
 
