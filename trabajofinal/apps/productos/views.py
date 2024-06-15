@@ -24,11 +24,11 @@ class Catalogo(ListView):
         context['categorias'] = Categoria.objects.all()
 
         #favoritos
-        usuario = self.request.user
-        
-        productos_favoritos = Favorito.objects.filter(usuario=usuario).values_list('producto__id', flat=True)
-        for producto in context['productos']:
-            producto.es_favorito = producto.id in productos_favoritos
+        if self.request.user.is_authenticated: 
+            usuario = self.request
+            productos_favoritos = Favorito.objects.filter(usuario=usuario).values_list('producto__id', flat=True)
+            for producto in context['productos']:
+                producto.es_favorito = producto.id in productos_favoritos
 
         
         return context
