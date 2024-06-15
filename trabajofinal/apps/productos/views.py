@@ -15,21 +15,17 @@ class Catalogo(ListView):
     context_object_name = "productos"
     paginate_by = 4
 
-    def get_context_data(self, **kwargs):
-        ctx = super(Catalogo, self).get_context_data(**kwargs)
-        return ctx
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categorias'] = Categoria.objects.all()
 
         #favoritos
-        if self.request.user.is_authenticated: 
-            usuario = self.request
+        if self.request.user.is_authenticated:
+            usuario = self.request.user
             productos_favoritos = Favorito.objects.filter(usuario=usuario).values_list('producto__id', flat=True)
             for producto in context['productos']:
                 producto.es_favorito = producto.id in productos_favoritos
-
         
         return context
     
