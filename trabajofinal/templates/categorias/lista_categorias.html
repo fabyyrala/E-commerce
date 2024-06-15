@@ -17,6 +17,9 @@
                 <td>
                     <a href="{% url 'Categorias:editar_categoria' categoria.id %}" class="btn btn-primary">Editar</a>
                 </td>
+                <td>
+                    <a href="{% url 'Categorias:eliminar_categoria' categoria.id %}" class="btn btn-danger">Borrar</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

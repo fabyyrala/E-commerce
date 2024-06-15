@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Categoria
 from .forms import CategoriaForm
 from django.urls import reverse_lazy
@@ -47,9 +47,10 @@ class CategoriaUpdateView(UpdateView):
         categoria = form.save()
         return super().form_valid(form)
 
+
 class CategoriaDeleteView(DeleteView):
     model = Categoria
     template_name = 'categorias/eliminar_categoria.html'
-    success_url = reverse_lazy('lista_categorias')
+    success_url = reverse_lazy('Categorias:lista_categorias')
 
 # Create your views here.
