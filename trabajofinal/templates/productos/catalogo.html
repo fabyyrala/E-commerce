@@ -28,7 +28,7 @@
             </div>
 
         </form>
-        {% if request.user.is_staff and request.user.is_superuser %}
+        {% if request.user.is_staff  %}
         <div class="text-justify">
             <a class="btn btn-danger mt-auto mb-2" href="{% url 'Productos:NuevoProducto' %}">Nuevo producto</a>
         </div>
@@ -55,20 +55,19 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="{{producto.img.url}}" alt="{{producto.nombre}}" width="250"  />
+                        
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
 
                                 <!-- Acciones -->
-                                {% if request.user.is_staff and request.user.is_superuser %}
+                                {% if request.user.is_staff %}
                                 <td class="py-2">
                                     <a href="{% url 'Productos:EditarProducto' producto.pk %}" type="button"
                                         class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
                                     <button type="button" class="btn btn-outline-success"><i
                                             class="bi bi-check-lg"></i></button>
-                                    <button type="button" class="btn btn-outline-danger"><i
-                                            class="bi bi-trash"></i></button>
+                                   <a href="{% url 'Productos:EliminarProducto' producto.pk %}" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
                                 </td>
 
                                 <hr>
