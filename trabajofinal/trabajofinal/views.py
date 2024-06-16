@@ -4,9 +4,11 @@ from apps.productos.models import Producto
 from django.views.generic.edit import CreateView
 
 def Incio(request):
+    ultimosproductos = Producto.objects.all()[:3]
+
     ctx = { 
         "categorias": Categoria.objects.all(),
-        "productos": Producto.objects.all().latest()
+        "ultimosproductos": Producto.objects.filter(activo=True).order_by('-fechacreacion')
     }
 
     return render(request, 'inicio.html', ctx)

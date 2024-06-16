@@ -23,29 +23,44 @@
         </div>
         {% endfor %}
     </div>
+    <hr>
 </div>
+
 
 
 
 <!--- SECCION DE ULTIMOS AGREGADOS-->
-<div class="container">
-    <h1>Últimos agregados</h1>
-    <div class="row text-center">
-        {% for categoria in categorias %}
-        <div class="col-md-4 mb-3">
-            <div class="position-relative">
-                <img src="https://dummyimage.com/350x300/dee2e6/6c757d.jpg" class="img-fluid">
-                <div class="overlay-content position-absolute bottom-0 start-50 translate-middle-x text-center">
-                    <h5 class="mb-0"></h5>
-                    <a href="{% url 'Productos:Catalogo' %}?categoria={{categoria.nombre}}" class="btn btn-dark mt-12">{{categoria.nombre}}</a>
+
+
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Ultimos productos</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for producto in ultimosproductos %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{producto.img.url}}" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{producto.nombre}}</h5>
+                            <!-- Product price-->
+                            ${{producto.precio}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-dark mt-auto" href="{% url 'Productos:Detalles' producto.pk %}">Ver</a></div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+</section>
 
 
-<br>
 
 {% endblock contenido %}
