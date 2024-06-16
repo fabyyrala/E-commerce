@@ -49,7 +49,7 @@
 
                 <!----- descuento -->
                 {% for producto in productos %}
-                {% if producto.activo %}
+                {% if producto.activo or request.user.is_staff %}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
