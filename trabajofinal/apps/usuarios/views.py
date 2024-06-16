@@ -73,7 +73,7 @@ class ListarUsuarios(LoginRequiredMixin,ListView):
 
 
 
-class VerPerfil(DetailView):
+class VerPerfil(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'usuarios/perfil.html'
     context_object_name = 'usuario'
@@ -94,7 +94,7 @@ def perfil(request):
 
 
 
-class EditarPerfil(UpdateView):
+class EditarPerfil(LoginRequiredMixin, UpdateView):
     template_name = "usuarios/editarperfil.html"
     model = User
     form_class = FormularioRegistroUsuario
