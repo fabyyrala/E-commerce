@@ -55,7 +55,7 @@
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="{{producto.img.url}}" alt="{{producto.nombre}}" width="250" />
+                        
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -65,9 +65,10 @@
                                 <td class="py-2">
                                     <a href="{% url 'Productos:EditarProducto' producto.pk %}" type="button"
                                         class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
-                                    <button type="button" class="btn btn-outline-success"><i
-                                            class="bi bi-check-lg"></i></button>
-                                   <a href="{% url 'Productos:EliminarProducto' producto.pk %}" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                    <a href="{% url 'Productos:DesactivarProducto' producto.pk %}"  type="button" class="btn btn-outline-success">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                   <a href="{% url 'Productos:EliminarProducto' producto.pk  %}" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
                                 </td>
 
                                 <hr>
@@ -111,7 +112,7 @@
                     </div>
 
                     {% endif %}
-                {% endfor %}
+                    {% endfor %}
 
                 </div>
                 {% include 'base/pagination.html' %}

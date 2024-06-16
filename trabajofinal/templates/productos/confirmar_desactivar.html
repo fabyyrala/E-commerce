@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% block contenido %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Desactivar Producto</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        input[type="submit"] {
+            background-color: orange;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>¿Estás seguro de que deseas desactivar este producto?</h1>
+    <div class="container-fluid">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <form method="GET" action="{% url 'Productos:Catalogo' %}">
+                <!-- Dropdown code here to select the product to deactivate -->
+            </form>
+            {% if request.user.is_staff %}
+            <div class="text-justify">
+                <!-- Additional information for staff -->
+            </div>
+            {% endif %}
+            <form action="{% url 'Productos:DesactivarProducto' producto.id %}" method="post" style="display: flex; flex-direction: column; align-items: center;">
+                {% csrf_token %}
+                <input type="submit" value="Desactivar" class="btn btn-warning mt-auto mb-4">
+               <a href="{% url 'Productos:Catalogo' %}" class="btn btn-secondary mt-auto mb-4">Regresar</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock contenido %}
