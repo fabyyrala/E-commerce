@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from apps.productos.models import Producto
@@ -73,6 +73,12 @@ class EditarProducto(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("Productos:Catalogo")
 
 
-
+def EliminarProducto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
     
+    if request.method == 'POST':
+        producto.delete()
+        return redirect("Productos:Catalogo")
+    
+    return render(request, 'productos/confirmacion_eliminar.html', {'producto': producto})
     
