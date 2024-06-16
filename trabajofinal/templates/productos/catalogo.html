@@ -41,8 +41,6 @@
 </nav>
 
 
-
-
 <section class="h-100 " style="background-color:#eee;">
 
     <section class="py-5">
@@ -51,7 +49,7 @@
 
                 <!----- descuento -->
                 {% for producto in productos %}
-                {% if producto.activo %}
+                {% if producto.activo or request.user.is_staff %}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -65,8 +63,16 @@
                                 <td class="py-2">
                                     <a href="{% url 'Productos:EditarProducto' producto.pk %}" type="button"
                                         class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
+
+                                    {% if producto.activo %}
                                     <a href="{% url 'Productos:DesactivarProducto' producto.pk %}"  type="button" class="btn btn-outline-success">
                                         <i class="bi bi-check-lg"></i>
+                                    {% else %}
+                                    <a href="{% url 'Productos:DesactivarProducto' producto.pk %}"  type="button" class="btn btn-success">
+                                        <i class="bi bi-check-lg"></i>
+                                    {% endif %}
+
+
                                     </button>
                                    <a href="{% url 'Productos:EliminarProducto' producto.pk  %}" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
                                 </td>

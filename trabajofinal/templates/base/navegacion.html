@@ -42,7 +42,12 @@
                 <div class="dropdown">
                     
                     <button class="btn dropdown-toggle-20" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> {{user.last_name}} {{user.first_name}}
+                        <i class="bi bi-person-circle"></i> 
+                        {% if user.first_name and user.lastname %}
+                            {{user.last_name}} {{user.first_name}}
+                        {% else %}
+                            {{user.username}}
+                        {% endif %}
                     </button>
 
 
