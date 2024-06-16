@@ -2,43 +2,49 @@
 
 {% block contenido %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Desactivar Producto</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
-        input[type="submit"] {
-            background-color: orange;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <h1>¿Estás seguro de que deseas desactivar este producto?</h1>
-    <div class="container-fluid">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <form method="GET" action="{% url 'Productos:Catalogo' %}">
-                <!-- Dropdown code here to select the product to deactivate -->
-            </form>
-            {% if request.user.is_staff %}
-            <div class="text-justify">
-                <!-- Additional information for staff -->
-            </div>
-            {% endif %}
-            <form action="{% url 'Productos:DesactivarProducto' producto.id %}" method="post" style="display: flex; flex-direction: column; align-items: center;">
-                {% csrf_token %}
-                <input type="submit" value="Desactivar" class="btn btn-warning mt-auto mb-4">
-               <a href="{% url 'Productos:Catalogo' %}" class="btn btn-secondary mt-auto mb-4">Regresar</a>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="card mx-auto" style="width: 650px;">
+            <div class="card-body">
 
+                <section class="py-5 bg-light">
+                    <div class="container px-4 px-lg-5 mt-5">
+
+                        <h1>¿Estás seguro de que deseas desactivar este producto?</h1>
+                        <div class="container-fluid">
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <form method="GET" action="{% url 'Productos:Catalogo' %}">
+
+                                </form>
+                                {% if request.user.is_staff %}
+                                <div class="text-justify">
+
+                                </div>
+                                {% endif %}
+                                <form action="{% url 'Productos:DesactivarProducto' producto.id %}" method="post"
+                                    style="display: flex; flex-direction: column; align-items: center;">
+                                    {% csrf_token %}
+
+
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-center align-items-center">
+                                        <div class="mx-auto">
+
+                                            <input type="submit" value="Desactivar"
+                                                class="btn btn-warning mt-auto mb-4">
+                                            <a href="{% url 'Productos:Catalogo' %}"
+                                                class="btn btn-secondary mt-auto mb-4">Regresar</a>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+</section>
 {% endblock contenido %}
