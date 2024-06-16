@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 
-from apps.usuarios.formularios import FormularioRegistroUsuario
+from apps.usuarios.formularios import FormularioRegistroUsuario, ActualizarPerfil
 
 # Create your views here.
 def login_user(request):
@@ -97,5 +97,7 @@ def perfil(request):
 class EditarPerfil(LoginRequiredMixin, UpdateView):
     template_name = "usuarios/editarperfil.html"
     model = User
-    form_class = FormularioRegistroUsuario
-    success_url = reverse_lazy("Usuarios:EditarPerfil")
+    form_class = ActualizarPerfil
+    
+    def get_success_url(self):
+        return reverse_lazy('Usuarios:EditarPerfil', kwargs={'pk': self.object.pk})

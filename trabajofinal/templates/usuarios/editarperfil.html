@@ -6,15 +6,6 @@
 
 {% block contenido %}
 
-
-
-            <div class="card mt-2 mx-auto p-4">
-                <div class=" text-justify mt-5 ">
-                    <h1>Editar perfil</h1>
-                    <form method="POST" class="btn-outline-danger"> 
-                        {% csrf_token %}
-                        {{form.as_p}}
-
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
 
@@ -27,11 +18,10 @@
                             <div class=" text-justify mt-5 ">
                                 <h1>Editar perfil</h1>
                                 <form method="POST" class="btn-outline-danger"> 
-                                    
+                                    {% csrf_token %}
                                     {{form.as_p}}
                                     <div class=" text-center mt-5 ">
-                                        <input type="submit" class="btn btn-primary btn-send  pt-2 btn-block
-                                        " value="Aceptar">
+                                        <input type="submit" class="btn btn-primary btn-send  pt-2 btn-block" value="Aceptar">
                                         
                                         <a class="btn btn-dark btn-send pt-2 btn-block" type="button" href="{% url 'Usuarios:perfil' %}">Cancelar</a>
 
