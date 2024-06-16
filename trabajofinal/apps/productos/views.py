@@ -83,3 +83,12 @@ def EliminarProducto(request, producto_id):
     
     return render(request, 'productos/confirmacion_eliminar.html', {'producto': producto})
     
+def DesactivarProducto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    
+    if request.method == 'POST':
+        producto.activo = False
+        producto.save()
+        return redirect("Productos:Catalogo")
+    
+    return render(request, 'productos/confirmar_desactivar.html', {'producto': producto})
