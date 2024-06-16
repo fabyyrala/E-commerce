@@ -58,8 +58,6 @@ class DetalleProducto(DetailView):
 
 
 
-
-
 class RegistrarProducto(CreateView):
     template_name = "productos/nuevo.html"
     model = Producto
@@ -92,3 +90,15 @@ def DesactivarProducto(request, producto_id):
         return redirect("Productos:Catalogo")
     
     return render(request, 'productos/confirmar_desactivar.html', {'producto': producto})
+
+
+def ActivarProducto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    
+    if request.method == 'POST':
+        producto.activo = True
+        producto.save()
+        return redirect("Productos:Catalogo")
+    
+    return render(request, 'productos/confirmar_activar.html', {'producto': producto})
+

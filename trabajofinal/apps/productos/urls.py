@@ -11,5 +11,6 @@ urlpatterns = [
     path('detalles/<int:pk>', views.DetalleProducto.as_view(), name="Detalles"),
     path('eliminar/<int:producto_id>', views.EliminarProducto, name="EliminarProducto"),
     path('desactivar/<int:producto_id>/', views.DesactivarProducto, name='DesactivarProducto'),
+    path('activar/<int:producto_id>/', views.ActivarProducto, name='ActivarProducto'),
 ]
 
