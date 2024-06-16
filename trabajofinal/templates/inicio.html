@@ -14,7 +14,12 @@
         {% for categoria in categorias %}
         <div class="col-md-4 mb-3">
             <div class="position-relative">
-                <img src="https://dummyimage.com/350x300/dee2e6/6c757d.jpg" class="img-fluid">
+                {% if categoria.img %}
+                <img src="{{categoria.img.url}}" class="img-fluid">
+                {% else %}
+                <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="img-fluid">
+                {% endif %}
+
                 <div class="overlay-content position-absolute bottom-0 start-50 translate-middle-x text-center">
                     <h5 class="mb-0"></h5>
                     <a href="{% url 'Productos:Catalogo' %}?categoria={{categoria.nombre}}" class="btn btn-dark mt-12">{{categoria.nombre}}</a>
