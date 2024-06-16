@@ -6,26 +6,46 @@
 
 {% block contenido %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="btn btn-outline-dark" type="submit">
-        <div class="nav-item dropdown">
-            
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
-                Categoria <span class="badge bg-danger text-white ms-1 rounded-pill">10</span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                <li>
-                    <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+<!---SECCION DE CATEGORIAS-->
+
+<div class="container">
+    <h1>Categorias</h1>
+    <div class="row text-center">
+        {% for categoria in categorias %}
+        <div class="col-md-4 mb-3">
+            <div class="position-relative">
+                <img src="https://dummyimage.com/350x300/dee2e6/6c757d.jpg" class="img-fluid">
+                <div class="overlay-content position-absolute bottom-0 start-50 translate-middle-x text-center">
+                    <h5 class="mb-0"></h5>
+                    <a href="{% url 'Productos:Catalogo' %}?categoria={{categoria.nombre}}" class="btn btn-dark mt-12">{{categoria.nombre}}</a>
+                </div>
+            </div>
         </div>
-    </button>
-</nav>
+        {% endfor %}
+    </div>
+</div>
 
-<hr />
 
-NO HAY NADAAAAAAAAA
+
+<!--- SECCION DE ULTIMOS AGREGADOS-->
+<div class="container">
+    <h1>Últimos agregados</h1>
+    <div class="row text-center">
+        {% for categoria in categorias %}
+        <div class="col-md-4 mb-3">
+            <div class="position-relative">
+                <img src="https://dummyimage.com/350x300/dee2e6/6c757d.jpg" class="img-fluid">
+                <div class="overlay-content position-absolute bottom-0 start-50 translate-middle-x text-center">
+                    <h5 class="mb-0"></h5>
+                    <a href="{% url 'Productos:Catalogo' %}?categoria={{categoria.nombre}}" class="btn btn-dark mt-12">{{categoria.nombre}}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<br>
 
 {% endblock contenido %}
