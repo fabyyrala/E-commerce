@@ -44,7 +44,8 @@ class DetalleProducto(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(DetalleProducto, self).get_context_data(**kwargs)
-        
+        ctx["icono"] = "o"
+
         if self.request.user.is_authenticated:
             usuario = self.request.user
             try:
@@ -52,11 +53,11 @@ class DetalleProducto(DetailView):
                 ctx["favoritos"] = favoritos
             except Favorito.DoesNotExist:
                 ctx["favoritos"] = None
-        else:
-            return ctx
-    
-    def get_queryset(self):
-        return self.model.objects.all().order_by('id')
+
+        return ctx
+
+
+
 
 
 class RegistrarProducto(CreateView):

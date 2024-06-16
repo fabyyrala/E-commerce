@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto
+from .models import Producto, Categoria
 
 
 class NuevoProducto(forms.ModelForm):
@@ -7,10 +7,13 @@ class NuevoProducto(forms.ModelForm):
     
     class Meta:
         model = Producto
-        fields = ["nombre", "desc", "precio","categoria"]
+        fields = ["nombre", "desc", "precio","categoria", "img"]
+
+    img = forms.ImageField(
+        widget=forms.FileInput(attrs={'class': 'form-control'})
+    )
 
 
-    #Otra forma a traves del constructor
     nombre = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
