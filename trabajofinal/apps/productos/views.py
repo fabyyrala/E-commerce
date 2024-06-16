@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect,render
 from django.urls import reverse_lazy
+
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from apps.productos.models import Producto
 from apps.productos.formularios import NuevoProducto
@@ -15,7 +17,6 @@ class Catalogo(ListView):
     context_object_name = "productos"
     paginate_by = 4
 
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categorias'] = Categoria.objects.all()
@@ -36,7 +37,6 @@ class Catalogo(ListView):
             queryset = queryset.filter(categoria__nombre=categoria)
         return queryset
 
-  
 
 class DetalleProducto(DetailView):
     templates_name = 'productos/producto_detail.html'
@@ -44,8 +44,16 @@ class DetalleProducto(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(DetalleProducto, self).get_context_data(**kwargs)
-        ctx["icono"] = "o"
-        return ctx
+        
+        if self.request.user.is_authenticated:
+            usuario = self.request.user
+            try:
+                favoritos = Favorito.objects.get(producto=self.object, usuario=usuario)
+                ctx["favoritos"] = favoritos
+            except Favorito.DoesNotExist:
+                ctx["favoritos"] = None
+        else:
+            return ctx
     
     def get_queryset(self):
         return self.model.objects.all().order_by('id')
@@ -58,12 +66,11 @@ class RegistrarProducto(CreateView):
     success_url = reverse_lazy("Productos:Catalogo")
 
 
-class EditarProducto(UpdateView):
+class EditarProducto(LoginRequiredMixin, UpdateView):
     template_name = "productos/editar.html"
     model = Producto
     form_class = NuevoProducto
     success_url = reverse_lazy("Productos:Catalogo")
-
 
 
 

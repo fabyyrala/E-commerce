@@ -3,6 +3,7 @@ from typing import Any
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
@@ -57,7 +58,7 @@ def registrarusuario(request):
         
     return render(request, 'registrarse.html', ctx)
 
-class ListarUsuarios(ListView):
+class ListarUsuarios(LoginRequiredMixin,ListView):
     template_name = 'usuarios/listar_usuarios.html'
     model = User
     context_object_name = 'usuarios'

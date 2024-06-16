@@ -7,7 +7,7 @@ class Producto(models.Model):
     desc = models.CharField(max_length=240)
     precio = models.FloatField()
     activo = models.BooleanField(default=True)
-    img = models.ImageField(default=None)
+    img = models.ImageField(default=None, blank=True, upload_to='archivo')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True, blank=True) 
 
     def __str__(self):

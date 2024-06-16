@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from . import settings
+from django.conf.urls.static import static
 
 
 
@@ -21,4 +23,4 @@ urlpatterns = [
     #categorias
     path('categorias/', include('apps.categorias.urls')),
     path('favs/', include('apps.favorito.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
