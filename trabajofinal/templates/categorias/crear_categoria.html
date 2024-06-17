@@ -22,7 +22,7 @@
                         <div class="controls">
 
                             <div class="row">
-                                <form method="POST" class="btn-outline-danger">
+                                <form method="POST" enctype="multipart/form-data" class="btn-outline-danger">
                                     {% csrf_token %}
 
                                     {{form.as_p}}
